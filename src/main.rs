@@ -2,7 +2,7 @@ use macroquad::prelude::*;
 
 const PLAYER_SIZE: f32 = 60f32;
 const PLAYER_SPEED: f32 = 600f32;
-const BOMB_SIZE: f32 = 15f32;
+const BOMB_SIZE: f32 = 8f32;
 const BOMB_SPEED: f32 = 600f32;
 
 // player
@@ -100,7 +100,7 @@ impl Bomb {
     }
 
     pub fn draw(&self) {
-        draw_rectangle(self.rect.x, self.rect.y, self.rect.w, self.rect.h, RED);
+        draw_circle(self.rect.x, self.rect.y, self.rect.h, ORANGE);
     }
 }
 
