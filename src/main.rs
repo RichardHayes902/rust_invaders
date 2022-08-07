@@ -3,7 +3,7 @@ use macroquad::prelude::*;
 const PLAYER_SIZE: f32 = 60f32;
 const PLAYER_SPEED: f32 = 600f32;
 const BOMB_SIZE: f32 = 8f32;
-const BOMB_SPEED: f32 = 600f32;
+const BOMB_SPEED: f32 = 750f32;
 
 // player
 struct Player {
@@ -15,8 +15,8 @@ impl Player {
     pub fn new() -> Self {
         Self {
             rect: Rect::new(
-                screen_width() * 0.5f32 - PLAYER_SIZE * 0.5f32,
-                PLAYER_SIZE,
+                (rust_invaders().window_width / 2 - (PLAYER_SIZE / 2.0) as i32) as f32,
+                (rust_invaders().window_height - 100i32) as f32,
                 PLAYER_SIZE,
                 PLAYER_SIZE
             ),
@@ -65,7 +65,7 @@ impl Player {
 
     pub fn fire(&mut self) {
         let bomb = Bomb::new(vec2(
-            self.rect.x + PLAYER_SIZE * 0.5f32 - BOMB_SIZE * 0.5f32,
+            self.rect.x + PLAYER_SIZE * 0.5f32,
             self.rect.y
         ));
         self.projectiles.push(bomb);
@@ -107,7 +107,8 @@ impl Bomb {
 fn rust_invaders() -> Conf {
     Conf {
         window_title: "Rust Invaders".to_owned(),
-        fullscreen: true,
+        window_width: 1500,
+        window_height: 900,
         ..Default::default()
     }
 }
